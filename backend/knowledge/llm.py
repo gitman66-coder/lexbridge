@@ -1,0 +1,21 @@
+import ollama
+
+MODEL_NAME = "qwen3:8b"
+
+
+def generate_response(prompt: str) -> str:
+    response = ollama.chat(
+        model=MODEL_NAME,
+        messages=[
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
+        options={
+            "temperature": 0,
+            "num_predict": 512
+        }
+    )
+
+    return response["message"]["content"]
